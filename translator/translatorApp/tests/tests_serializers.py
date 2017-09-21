@@ -14,10 +14,9 @@ class SerializerTestCase(TestCase):
 			'language': 'fr'
 		}
 
-		self.phrase = Phrase.objects.create(**self.dummy_phrase) 
+		self.phrase = Phrase.objects.create(**self.dummy_phrase)
 		self.serializer = PhraseSerializer(instance=self.phrase)
 
-		
 	def test_valid_data_fields(self):
 		data = self.serializer.data
 		self.assertCountEqual(data.keys(), ['id', 'text', 'language', 'translation'])
@@ -29,7 +28,7 @@ class SerializerTestCase(TestCase):
 	def test_language_content(self):
 		data = self.serializer.data
 		self.assertEqual(data['language'], self.dummy_phrase['language'])
-	
+
 	def test_translation_content(self):
 		data = self.serializer.data
 		self.assertEqual(data['translation'], self.dummy_phrase['translation'])
