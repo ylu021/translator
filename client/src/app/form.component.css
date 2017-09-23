@@ -1,0 +1,47 @@
+.phrase-form {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.phrase-form > * {
+  margin: 0.5rem 0;
+  border-radius: 5px;
+}
+
+.phrase-input {
+  padding: 0.5rem;
+  font-size: 14px;
+  border: 1px solid #ebebeb;
+  width: 80%;
+}
+
+.phrase-btn {
+  display: inline-block;
+  border: none;
+  background: #336699;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0.5rem;
+  width: 100px;
+  min-height: 30px;
+}
+
+.phrase-btn:hover {
+  border: 1px solid #336699;
+  color: #336699;
+  background: none;
+}
+
+.phrase-display, .phrase-error-display {
+  padding: 1rem 0.5rem;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.phrase-display-text {
+  font-weight: 600;
+}
