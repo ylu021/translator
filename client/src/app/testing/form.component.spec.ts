@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { async, fakeAsync, tick } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
+
 import { FormComponent } from '../form.component';
 import { PhraseService } from '../phrase.service';
 import { Phrase } from '../phrase';
@@ -12,19 +14,23 @@ describe('FormComponent', () => {
   let fixture: ComponentFixture<FormComponent>;
   let de: DebugElement;
   let el: HTMLElement;
+  let input: DebugElement;
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FormComponent ],
       providers: [ PhraseService ],
       imports: [ HttpModule, FormsModule ]
-    });
+    }).compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(FormComponent);
     comp = fixture.componentInstance;
     de = fixture.debugElement.query(By.css('.phrase-form'));
     el = de.nativeElement;
-  });
+    input = fixture.debugElement.query(By.css('.phrase-input'));
+  })
 
   it('should render the form with an input and a button', () => {
     comp.phrase = {
@@ -36,23 +42,11 @@ describe('FormComponent', () => {
     expect(el.children[1].getAttribute('class')).toBe('phrase-btn');
   });
 
-  it('should changes the ngmodel when input changes', () => {
-    let input = fixture.debugElement.query(By.css('.phrase-input'));
-    input.nativeElement.value = 'mock';
-    input.nativeElement.dispatchEvent(new Event('input'));
+  it('should changes the ngmodel when component value changes', fakeAsync(() => {
+    comp.phrase.text = 'mock';
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(comp.phrase).toBe('mock');
-    });
-  });
-
-  // it('should display error message when phrase is empty', () => {
-  //   let button = fixture.debugElement.query(By.css('.phrase-btn'));
-  //   button.nativeElement.dispatchEvent(new Event('input'));
-  //   fixture.detectChanges();
-  //   fixture.whenStable().then(() => {
-  //     expect(comp.error.message.length).not.toEqual(0);
-  //     expect(comp.error.message).toEqual('Phrase cannot be empty');
-  //   });
-  // });
+    tick();
+    fixture.detectChanges();
+    expect(input.nativeElement.getAttribute('ng-reflect-model')).toBe('mock');
+  }));
 });

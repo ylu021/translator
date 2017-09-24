@@ -87,7 +87,8 @@ describe('Service: PhraseService', () => {
       });
 
       service.getPhrases().then((err) => {
-        expect(err.status).toBe(404);
+        // expect(err).toBe(404);
+        expect(err).toBe('404 Error retrieving list');
       });
     });
   });
@@ -103,7 +104,7 @@ describe('Service: PhraseService', () => {
         expect(phrase.text).toBe('Bon jour');
         expect(phrase.language).toBe('fr');
         expect(phrase.translation).toBe('Hello');
-        expect(phrase.status).toBe(200);
+        // expect(phrase).toBe(200);
       });
     });
   });

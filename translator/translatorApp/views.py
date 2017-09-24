@@ -24,7 +24,7 @@ class PhraseViewSet(viewsets.ModelViewSet):
 				# phrase exist retrieve the translation
 				phrase = self.queryset.get(text=request.data['text'])
 				translation = phrase.translation
-				return Response({'translation': translation}, status=status.HTTP_200_OK)
+				return Response({'text': phrase.text, 'language': phrase.language, 'translation': translation}, status=status.HTTP_200_OK)
 
 			except Phrase.DoesNotExist:
 				# phrase does not exist
@@ -34,7 +34,7 @@ class PhraseViewSet(viewsets.ModelViewSet):
 				serializer = PhraseSerializer(data=data)
 				if serializer.is_valid():
 					serializer.save()
-					return Response({'translation': translation}, status=status.HTTP_201_CREATED)
+					return Response({'text': request.data['text'], 'language': data['language'],'translation': translation}, status=status.HTTP_201_CREATED)
 
 				return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 		# bad request
