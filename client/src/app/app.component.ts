@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   template: `
     <h1>{{appname}}</h1>
     <nav>
-      <a class="link" routerLink='/phrases' routerLinkActive="active-link">Phrases</a>
+      <a class="link" routerLink='/phrases' routerLinkActive="active-link">Translated Phrases</a>
       <a class="link" routerLink='/form' routerLinkActive="active-link">Form</a>
     </nav>
     <router-outlet></router-outlet>
