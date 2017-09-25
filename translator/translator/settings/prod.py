@@ -14,7 +14,7 @@ DATABASES = {
         'NAME': os.environ['PROD_DB_NAME'],
         'USER' : os.environ['PROD_DB_USER']    ,
         'PASSWORD' : '12345678',
-        'HOST' : 'os.environ['PROD_DB_HOST']',
+        'HOST' : os.environ['PROD_DB_HOST'],
         'PORT' : '5432',
     }
 }
