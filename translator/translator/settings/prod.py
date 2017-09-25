@@ -18,3 +18,5 @@ DATABASES = {
         'PORT' : '5432',
     }
 }
+
+ALLOWED_HOSTS = ['ec2-18-221-136-72.us-east-2.compute.amazonaws.com', ]
