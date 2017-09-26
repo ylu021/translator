@@ -20,3 +20,4 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS = ['ec2-18-221-136-72.us-east-2.compute.amazonaws.com', ]
+STATIC_ROOT = '/home/ec2-user/translator/translator/static'
