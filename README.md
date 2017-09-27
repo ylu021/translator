@@ -7,7 +7,8 @@ Libraries - Googletrans, django-environ etc.
 Client - Angular 2 + Webpack  
 Server - django + django rest framework  
 Database - Postgres  
-Deploy - gunicorn + nginx  
+Server - gunicorn + nginx  
+Deploy - EC2 + RDS  
 
 # Developing Installation  
 `git clone https://github.com/ylu021/translator.git`
